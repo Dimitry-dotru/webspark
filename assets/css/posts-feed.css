@@ -2,11 +2,6 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  width: 100%;
-  max-width: 866px;
-  margin: 0 auto;
-  margin-top: 63px;
-  padding: 0 15px;
   padding-bottom: 33px;
 }
 
@@ -68,4 +63,55 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+}
+
+.load-more-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding-bottom: 50px;
+}
+
+.display-variants {
+  margin-top: 63px;
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  gap: 21px;
+  margin-bottom: 23px;
+}
+
+.display-variants .display-variants-el {
+  cursor: pointer;
+}
+
+.display-variants .display-variants-el svg rect {
+  fill: #C8C7C7;
+  transition: .3s;
+}
+
+.display-variants .display-variants-el.active svg rect {
+  fill: var(--light-blue);
+}
+
+.posts-container.tiles {
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin-right: -8px;
+
+  --elements-in-row: 4;
+}
+
+.posts-container.tiles .post-element {
+  flex-direction: column;
+  max-width: none;
+  width: calc((100% / var(--elements-in-row)) - 8px);
+  padding-top: 0;
+  padding-bottom: 18px;
+}
+
+.posts-container.tiles .post-element img {
+  margin: 0;
+  margin-bottom: 12px;
+  width: 100%;
 }

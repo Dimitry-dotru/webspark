@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-    rel="stylesheet">
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet"> -->
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
 
   <link rel="stylesheet" href="assets/css/global.css">
@@ -100,12 +100,34 @@
   </header>
   <main>
     <div class="display-variants">
-      <div class="display-variants-el" data-display="tiles"></div>
-      <div class="display-variants-el" data-display="rows"></div>
+      <div class="display-variants-el" data-display="tiles">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="6" height="6" fill="#3D8EDA" />
+          <rect x="8" width="6" height="6" fill="#3D8EDA" />
+          <rect x="16" width="6" height="6" fill="#3D8EDA" />
+          <rect y="8" width="6" height="6" fill="#3D8EDA" />
+          <rect y="16" width="6" height="6" fill="#3D8EDA" />
+          <rect x="8" y="8" width="6" height="6" fill="#3D8EDA" />
+          <rect x="8" y="16" width="6" height="6" fill="#3D8EDA" />
+          <rect x="16" y="8" width="6" height="6" fill="#3D8EDA" />
+          <rect x="16" y="16" width="6" height="6" fill="#3D8EDA" />
+        </svg>
+      </div>
+      <div class="display-variants-el active" data-display="rows">
+        <svg width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="6" height="6" fill="#C8C7C7" />
+          <rect y="8" width="6" height="6" fill="#C8C7C7" />
+          <rect y="16" width="6" height="6" fill="#C8C7C7" />
+          <rect x="9" y="10" width="15" height="2" fill="#C8C7C7" />
+          <rect x="9" y="18" width="15" height="2" fill="#C8C7C7" />
+          <rect x="9" y="2" width="15" height="2" fill="#C8C7C7" />
+        </svg>
+      </div>
     </div>
     <div class="posts-container">
-      
-      </div>
+    </div>
+    <div class="load-more-container">
+      <button class="btn-secondary">Load more</button>
     </div>
   </main>
 

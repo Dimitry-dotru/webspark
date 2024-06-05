@@ -41,6 +41,7 @@ button {
   outline: none;
   cursor: pointer;
   background: transparent;
+  transition: .3s;
 }
 
 input {
@@ -60,11 +61,24 @@ button.btn-primary {
   color: var(--light-blue);
   padding: 7px 12px;
   font-size: 13px;
-  transition: .3s;
 }
 
 button.btn-primary:hover {
   background-color: var(--light-blue-opacity);
+}
+
+button.btn-secondary {
+  border-radius: 14px;
+  border: 1px solid #929292;
+  text-transform: uppercase;
+  font-size: 11px;
+  color: #929292;
+  padding: 8px 26px;
+}
+
+button.btn-secondary:hover {
+  background-color: #929292;
+  color: var(--white);
 }
 
 label:has( > input[data-date]) {
@@ -156,6 +170,14 @@ body::after {
   width: 21%;
   height: 367px;
   background-position-x: right;
+}
+
+
+main {
+  width: 100%;
+  max-width: 866px;
+  padding: 0 15px;
+  margin: 0 auto;
 }
 
 .pika-single {

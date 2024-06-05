@@ -1,43 +1,11 @@
 const allDateInputs = document.querySelectorAll("input[data-date]");
-
-if (allDateInputs.length)
-  allDateInputs.forEach((el) => {
-    const picker = new Pikaday({
-      field: el,
-      showDaysInNextAndPreviousMonths: true,
-      format: "D/M/YYYY",
-      toString(date, format) {
-        const day = date.getDate();
-        const month = date.getMonth() + 1;
-        const year = date.getFullYear();
-        return `${day}_${month}_${year}`;
-      },
-      parse(dateString, format) {
-        const parts = dateString.split("_");
-        const day = parseInt(parts[0], 10);
-        const month = parseInt(parts[1], 10) - 1;
-        const year = parseInt(parts[2], 10);
-        return new Date(year, month, day);
-      },
-      onSelect: function (date) {
-        const parentEl = el.parentElement;
-        const textContainer = parentEl.querySelector("span");
-        const day = date.getDate();
-        const month = date.getMonth() + 1;
-        const year = date.getFullYear();
-        textContainer.textContent = `${day}_${month}_${year}`;
-      },
-    });
-  });
-
+const displaySwitcher = document.querySelector(".display-variants");
+const selectedVariant = window.localStorage.getItem("displayVariant")
+  ? window.localStorage.getItem("displayVariant")
+  : "rows";
 const header = document.querySelector("header");
-window.addEventListener("scroll", () => {
-  const { scrollY } = window;
-
-  if (scrollY >= 50) header.style.backgroundColor = "var(--white)";
-  else header.style.backgroundColor = "var(--white-opacity)";
-
-});
+const postsContainer = document.querySelector(".posts-container");
+const loadMoreBtn = document.querySelector(".load-more-container button");
 
 const getRandomDate = () => {
   const year = Math.floor(Math.random() * (2024 - 2016 + 1)) + 2016;
@@ -47,7 +15,6 @@ const getRandomDate = () => {
 
   return `${day}-${month + 1}-${year}`;
 };
-
 const fillFakeData = (elAmnt) => {
   for (let i = 0; i < elAmnt; i++) {
     const randomNum = Math.floor(Math.random() * 8) + 1;
@@ -63,14 +30,9 @@ const fillFakeData = (elAmnt) => {
     fakeData.push(tempObj);
   }
 };
-
-const fakeData = [];
-fillFakeData(10);
-
-const postsContainer = document.querySelector(".posts-container");
-
-if (postsContainer)
-  fakeData.forEach((el) => {
+const renderData = (arr) => {
+  postsContainer.innerHTML = "";
+  arr.forEach((el) => {
     const element = `
 <div class="post-element">
   <img src="${el.imgLink}" alt="Post picture">
@@ -110,3 +72,87 @@ if (postsContainer)
 
     postsContainer.innerHTML += element;
   });
+};
+
+const fakeData = [];
+let elementsToShow = 10;
+const elementsToShowStep = 10;
+fillFakeData(50);
+
+if (!allDateInputs.length) {
+  allDateInputs.forEach((el) => {
+    const picker = new Pikaday({
+      field: el,
+      showDaysInNextAndPreviousMonths: true,
+      format: "D/M/YYYY",
+      toString(date, format) {
+        const day = date.getDate();
+        const month = date.getMonth() + 1;
+        const year = date.getFullYear();
+        return `${day}_${month}_${year}`;
+      },
+      parse(dateString, format) {
+        const parts = dateString.split("_");
+        const day = parseInt(parts[0], 10);
+        const month = parseInt(parts[1], 10) - 1;
+        const year = parseInt(parts[2], 10);
+        return new Date(year, month, day);
+      },
+      onSelect: function (date) {
+        const parentEl = el.parentElement;
+        const textContainer = parentEl.querySelector("span");
+        const day = date.getDate();
+        const month = date.getMonth() + 1;
+        const year = date.getFullYear();
+        textContainer.textContent = `${day}_${month}_${year}`;
+      },
+    });
+  });
+}
+
+if (postsContainer) {
+  renderData(fakeData.slice(0, elementsToShow));
+}
+
+window.addEventListener("scroll", () => {
+  const { scrollY } = window;
+
+  if (scrollY >= 50) header.style.backgroundColor = "var(--white)";
+  else header.style.backgroundColor = "var(--white-opacity)";
+});
+
+displaySwitcher.addEventListener("click", (e) => {
+  const removeActiveClasses = () => {
+    displaySwitcher
+      .querySelectorAll(".display-variants-el")
+      .forEach((el) => el.classList.remove("active"));
+  };
+  if (e.target.classList.contains("display-variants")) return;
+  const clickedEl = e.target.closest(".display-variants-el");
+  const dataAttr = clickedEl.dataset.display;
+  removeActiveClasses();
+  clickedEl.classList.add("active");
+
+  window.localStorage.setItem("displayVariant", dataAttr);
+
+  const postsContainer = document.querySelector(".posts-container");
+  if (dataAttr === "tiles") postsContainer.classList.add("tiles");
+  else if (dataAttr === "rows") postsContainer.classList.remove("tiles");
+});
+
+displaySwitcher
+  .querySelector(`.display-variants-el[data-display=${selectedVariant}]`)
+  .click();
+
+loadMoreBtn.addEventListener("click", (e) => {
+  if (elementsToShow + elementsToShowStep > fakeData.length)
+    elementsToShow = fakeData.length;
+  else elementsToShow += elementsToShowStep;
+
+  renderData(fakeData.slice(0, elementsToShow));
+
+  if (elementsToShow === fakeData.length) {
+    e.target.remove();
+    return;
+  }
+});
