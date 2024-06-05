@@ -128,6 +128,7 @@ img {
 body {
   min-height: 100dvh;
   font-family: "Montserrat";
+  background-color: var(--white-half);
 }
 
 body::after,
