@@ -1,0 +1,53 @@
+header {
+  min-height: 172px;
+  width: 100%;
+  background-color: var(--white-opacity);
+  box-shadow: 0px 4px 24px #0000001f, inset 0px 12px 24px -10px #0000004a;
+  position: fixed;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-content {
+  width: 100%;
+  max-width: 640px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.header-logo-icon {
+  width: 100%;
+  display: block;
+  max-width: 120px;
+}
+
+.header-content-project-info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.project-info-title {
+  display: flex;
+  gap: 16px;
+}
+
+.project-info-description {
+  display: flex;
+  gap: 17px;
+}
+
+.project-info-date-container {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.project-info-date-elements {
+  display: flex;
+  gap: 22px;
+}

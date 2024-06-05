@@ -4,12 +4,125 @@
   --white-opacity: #ffffffab;
   --black: #000;
   --light-blue: #3D8EDA;
+  --light-blue-opacity: #3d8eda76;
+  --light-grey: #DEDEDE;
+  --grey: #636264;
+  --dark-grey: #5F5F5F;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+.fw-500 {
+  font-weight: 600;
+}
+
+.text-extra-small {
+  font-size: 11px;
+}
+
+.text-sm {
+  font-size: 14px;
+}
+
+.text-lg {
+  font-size: 16px;
+}
+
+.text-xxl {
+  font-size: 24px;
+}
+
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: transparent;
+}
+
+input {
+  border: none;
+  outline: none;
+  width: 100%;
+}
+
+input:focus {
+  border: none;
+  outline: none;
+}
+
+button.btn-primary {
+  border: 1px solid var(--light-blue);
+  border-radius: 2px;
+  color: var(--light-blue);
+  padding: 7px 12px;
+  font-size: 13px;
+  transition: .3s;
+}
+
+button.btn-primary:hover {
+  background-color: var(--light-blue-opacity);
+}
+
+label:has( > input[data-date]) {
+  width: 162px;
+  min-height: 30px;
+  position: relative;
+  display: block;
+  font-size: 13px;
+  border: 1px solid var(--light-grey);
+  border-radius: 4px;
+  padding: 7px 8px;
+  padding-right: 0;
+  transition: .3s;
+  overflow: hidden;
+  color: var(--grey);
+}
+
+label:has( > input[data-date]):hover,
+label:has( > input[data-date]):hover .date-picker-control-buttons .date-picker-control-el {
+  border-color: var(--grey);
+}
+
+.date-picker-control-buttons {
+  height: 100%;
+  margin-right: -1px;
+  position: absolute;
+  top: 50%;
+  right: 1px;
+  display: flex;
+  transform: translateY(-50%);
+}
+
+.date-picker-control-buttons .date-picker-control-el {
+  background-color: #EBEBEB;
+  height: 100%;
+  width: 26px;
+  border-left: 1px solid var(--light-grey);
+  transition: .3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+label:has( > input[data-date]) input {
+  visibility: hidden;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+label:has( > input[data-date]) input:focus {
+  border-color: var(--grey);
+}
+
+img {
+  width: 100%;
+  height: auto;
 }
 
 body {
@@ -24,6 +137,7 @@ body::before {
   display: block;
   background-repeat: no-repeat;
   background-size: contain;
+  z-index: -1;
 }
 
 body::before {
@@ -41,4 +155,70 @@ body::after {
   width: 21%;
   height: 367px;
   background-position-x: right;
+}
+
+.pika-single {
+  border-radius: 5px;
+}
+
+.pika-button:hover {
+  background-color: #F4F4F4;
+}
+
+.pika-table abbr {
+  text-decoration: none;
+}
+
+.pika-table th {
+  color: var(--black);
+}
+
+.pika-label {
+  color: var(--black);
+}
+
+.pika-table td {
+  width: 23px;
+  height: 23px;
+}
+
+.pika-button {
+  background: transparent;
+  height: 23px;
+  text-align: center;
+  border-radius: 2px;
+}
+
+.pika-button:hover {
+  border-radius: 2px;
+}
+
+.is-today .pika-button {
+  color: var(--white);
+  background-color: var(--light-blue-opacity);
+}
+
+.pika-button.pika-day {
+  color: #333437;
+}
+
+.is-today .pika-button.pika-day,
+.is-selected .pika-button.pika-day {
+  color: var(--white);
+}
+
+.is-selected:hover .pika-button.pika-day {
+  background-color: var(--light-blue);
+}
+
+.is-outside-current-month  {
+  color: #929292;
+}
+
+.pika-prev {
+  transform: rotate(-180deg);
+}
+
+.pika-prev, .pika-next {
+  background-image: url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 14 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3.73913 3.5L2.91663 4.3225L5.58829 7L2.91663 9.6775L3.73913 10.5L7.23913 7L3.73913 3.5Z' fill='black'/%3E%3Cpath d='M7.58324 3.5L6.76074 4.3225L9.43241 7L6.76074 9.6775L7.58324 10.5L11.0832 7L7.58324 3.5Z' fill='black'/%3E%3C/svg%3E%0A");
 }
