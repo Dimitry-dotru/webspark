@@ -1,0 +1,44 @@
+:root {
+  --white-half: #FAFAFA;
+  --white: #fff;
+  --white-opacity: #ffffffab;
+  --black: #000;
+  --light-blue: #3D8EDA;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100dvh;
+  font-family: "Montserrat";
+}
+
+body::after,
+body::before {
+  content: "";
+  position: fixed;
+  display: block;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+body::before {
+  background-image: url("../img/top-decoration.svg");
+  top: 0;
+  left: 0;
+  width: 47%;
+  height: 482px;
+}
+
+body::after {
+  bottom: 41px;
+  right: 0;
+  background-image: url("../img/bottom-decoration.svg");
+  width: 21%;
+  height: 367px;
+  background-position-x: right;
+}
