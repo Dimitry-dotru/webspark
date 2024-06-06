@@ -90,7 +90,7 @@ let elementsToShow = 10;
 const elementsToShowStep = 10;
 fillFakeData(50);
 
-if (!allDateInputs.length) {
+if (allDateInputs.length) {
   allDateInputs.forEach((el) => {
     const picker = new Pikaday({
       field: el,
