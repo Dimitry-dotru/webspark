@@ -73,6 +73,17 @@ const renderData = (arr) => {
     postsContainer.innerHTML += element;
   });
 };
+const onResize = () => {
+  console.log(windowWidth);
+};
+const matchMedia = () => {
+  if (window.matchMedia("(max-width: 576px)").matches) {
+    displaySwitcher.style.display = "none";
+    displaySwitcher.querySelector("div[data-display='tiles']").click();
+  } else {
+    displaySwitcher.style.display = "flex";
+  }
+};
 
 const fakeData = [];
 let elementsToShow = 10;
@@ -119,6 +130,10 @@ window.addEventListener("scroll", () => {
 
   if (scrollY >= 50) header.style.backgroundColor = "var(--white)";
   else header.style.backgroundColor = "var(--white-opacity)";
+});
+
+window.addEventListener("resize", () => {
+  matchMedia();
 });
 
 displaySwitcher.addEventListener("click", (e) => {
